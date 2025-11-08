@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SDCPervomayModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DayOfWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymMembership">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GymMembershipServices">
+          <Key>
+            <PropertyRef Name="GymMembershipId" />
+            <PropertyRef Name="ServicesId" />
+          </Key>
+          <Property Name="GymMembershipId" Type="int" Nullable="false" />
+          <Property Name="ServicesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KidParent">
+          <Key>
+            <PropertyRef Name="IdKid" />
+            <PropertyRef Name="IdParent" />
+          </Key>
+          <Property Name="IdKid" Type="int" Nullable="false" />
+          <Property Name="IdParent" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LockerRoomId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LockerRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalTraining">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CoachId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CoachId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SDCPervomay.dbo.SectionDayOfWeek" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="SectionDayOfWeek">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="DayOfWeekId" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeekId" Type="int" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SectionKid">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="KidId" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="KidId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="18" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GymMembershipId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_GymMembershipServices_GymMembership">
+          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="1" />
+          <End Role="GymMembershipServices" Type="Self.GymMembershipServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GymMembership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GymMembershipServices">
+              <PropertyRef Name="GymMembershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GymMembershipServices_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="GymMembershipServices" Type="Self.GymMembershipServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GymMembershipServices">
+              <PropertyRef Name="ServicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KidParent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="KidParent" Type="Self.KidParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KidParent">
+              <PropertyRef Name="IdKid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KidParent_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="KidParent" Type="Self.KidParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KidParent">
+              <PropertyRef Name="IdParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locker_LockerRoom">
+          <End Role="LockerRoom" Type="Self.LockerRoom" Multiplicity="1" />
+          <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LockerRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Locker">
+              <PropertyRef Name="LockerRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locker_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Locker">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LockerRoom_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="LockerRoom" Type="Self.LockerRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LockerRoom">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalTraining_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PersonalTraining" Type="Self.PersonalTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalTraining">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalTraining_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PersonalTraining" Type="Self.PersonalTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalTraining">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionDayOfWeek_DayOfWeek">
+          <End Role="DayOfWeek" Type="Self.DayOfWeek" Multiplicity="1" />
+          <End Role="SectionDayOfWeek" Type="Self.SectionDayOfWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionDayOfWeek">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionDayOfWeek_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="SectionDayOfWeek" Type="Self.SectionDayOfWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionDayOfWeek">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionKid_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="SectionKid" Type="Self.SectionKid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionKid">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionKid_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SectionKid" Type="Self.SectionKid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionKid">
+              <PropertyRef Name="KidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_GymMembership">
+          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GymMembership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GymMembershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SDCPervomayModelContainer">
+          <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymMembership" EntityType="Self.GymMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GymMembershipServices" EntityType="Self.GymMembershipServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KidParent" EntityType="Self.KidParent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locker" EntityType="Self.Locker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LockerRoom" EntityType="Self.LockerRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalTraining" EntityType="Self.PersonalTraining" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SectionKid" EntityType="Self.SectionKid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SectionDayOfWeek" EntityType="Self.SectionDayOfWeek" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SectionDayOfWeek].[SectionId] AS [SectionId], 
+    [SectionDayOfWeek].[DayOfWeekId] AS [DayOfWeekId], 
+    [SectionDayOfWeek].[Time] AS [Time]
+    FROM [dbo].[SectionDayOfWeek] AS [SectionDayOfWeek]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_GymMembershipServices_GymMembership" Association="Self.FK_GymMembershipServices_GymMembership">
+            <End Role="GymMembership" EntitySet="GymMembership" />
+            <End Role="GymMembershipServices" EntitySet="GymMembershipServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GymMembershipServices_Services" Association="Self.FK_GymMembershipServices_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="GymMembershipServices" EntitySet="GymMembershipServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KidParent_User" Association="Self.FK_KidParent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="KidParent" EntitySet="KidParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KidParent_User1" Association="Self.FK_KidParent_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="KidParent" EntitySet="KidParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locker_LockerRoom" Association="Self.FK_Locker_LockerRoom">
+            <End Role="LockerRoom" EntitySet="LockerRoom" />
+            <End Role="Locker" EntitySet="Locker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locker_User" Association="Self.FK_Locker_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Locker" EntitySet="Locker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LockerRoom_Gender" Association="Self.FK_LockerRoom_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="LockerRoom" EntitySet="LockerRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalTraining_User" Association="Self.FK_PersonalTraining_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PersonalTraining" EntitySet="PersonalTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalTraining_User1" Association="Self.FK_PersonalTraining_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="PersonalTraining" EntitySet="PersonalTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_User" Association="Self.FK_Section_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionDayOfWeek_DayOfWeek" Association="Self.FK_SectionDayOfWeek_DayOfWeek">
+            <End Role="DayOfWeek" EntitySet="DayOfWeek" />
+            <End Role="SectionDayOfWeek" EntitySet="SectionDayOfWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionDayOfWeek_Section" Association="Self.FK_SectionDayOfWeek_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="SectionDayOfWeek" EntitySet="SectionDayOfWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionKid_Section" Association="Self.FK_SectionKid_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="SectionKid" EntitySet="SectionKid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionKid_User" Association="Self.FK_SectionKid_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SectionKid" EntitySet="SectionKid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_GymMembership" Association="Self.FK_User_GymMembership">
+            <End Role="GymMembership" EntitySet="GymMembership" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SDCPervomayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DayOfWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SectionDayOfWeek" Relationship="Self.FK_SectionDayOfWeek_DayOfWeek" FromRole="DayOfWeek" ToRole="SectionDayOfWeek" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LockerRoom" Relationship="Self.FK_LockerRoom_Gender" FromRole="Gender" ToRole="LockerRoom" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
+        </EntityType>
+        <EntityType Name="GymMembership">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_GymMembership" FromRole="GymMembership" ToRole="User" />
+          <NavigationProperty Name="Services" Relationship="Self.GymMembershipServices" FromRole="GymMembership" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Locker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LockerRoomId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LockerRoom" Relationship="Self.FK_Locker_LockerRoom" FromRole="Locker" ToRole="LockerRoom" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Locker_User" FromRole="Locker" ToRole="User" />
+        </EntityType>
+        <EntityType Name="LockerRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_LockerRoom_Gender" FromRole="LockerRoom" ToRole="Gender" />
+          <NavigationProperty Name="Locker" Relationship="Self.FK_Locker_LockerRoom" FromRole="LockerRoom" ToRole="Locker" />
+        </EntityType>
+        <EntityType Name="PersonalTraining">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="User" Relationship="Self.FK_PersonalTraining_User" FromRole="PersonalTraining" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_PersonalTraining_User1" FromRole="PersonalTraining" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CoachId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Section_User" FromRole="Section" ToRole="User" />
+          <NavigationProperty Name="SectionDayOfWeek" Relationship="Self.FK_SectionDayOfWeek_Section" FromRole="Section" ToRole="SectionDayOfWeek" />
+          <NavigationProperty Name="User1" Relationship="Self.SectionKid" FromRole="Section" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GymMembership" Relationship="Self.GymMembershipServices" FromRole="Services" ToRole="GymMembership" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GymMembershipId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="GymMembership" Relationship="Self.FK_User_GymMembership" FromRole="User" ToRole="GymMembership" />
+          <NavigationProperty Name="Locker" Relationship="Self.FK_Locker_User" FromRole="User" ToRole="Locker" />
+          <NavigationProperty Name="PersonalTraining" Relationship="Self.FK_PersonalTraining_User" FromRole="User" ToRole="PersonalTraining" />
+          <NavigationProperty Name="PersonalTraining1" Relationship="Self.FK_PersonalTraining_User1" FromRole="User" ToRole="PersonalTraining" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Section_User" FromRole="User" ToRole="Section" />
+          <NavigationProperty Name="User1" Relationship="Self.KidParent" FromRole="User" ToRole="User1" />
+          <NavigationProperty Name="User2" Relationship="Self.KidParent" FromRole="User1" ToRole="User" />
+          <NavigationProperty Name="Section1" Relationship="Self.SectionKid" FromRole="User" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="SectionDayOfWeek">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="DayOfWeekId" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeekId" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DayOfWeek" Relationship="Self.FK_SectionDayOfWeek_DayOfWeek" FromRole="SectionDayOfWeek" ToRole="DayOfWeek" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_SectionDayOfWeek_Section" FromRole="SectionDayOfWeek" ToRole="Section" />
+        </EntityType>
+        <Association Name="FK_SectionDayOfWeek_DayOfWeek">
+          <End Role="DayOfWeek" Type="Self.DayOfWeek" Multiplicity="1" />
+          <End Role="SectionDayOfWeek" Type="Self.SectionDayOfWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionDayOfWeek">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LockerRoom_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="LockerRoom" Type="Self.LockerRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LockerRoom">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_GymMembership">
+          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GymMembership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GymMembershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locker_LockerRoom">
+          <End Role="LockerRoom" Type="Self.LockerRoom" Multiplicity="1" />
+          <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LockerRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Locker">
+              <PropertyRef Name="LockerRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locker_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Locker">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalTraining_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PersonalTraining" Type="Self.PersonalTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalTraining">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalTraining_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PersonalTraining" Type="Self.PersonalTraining" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalTraining">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="CoachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionDayOfWeek_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="SectionDayOfWeek" Type="Self.SectionDayOfWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionDayOfWeek">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GymMembershipServices">
+          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="*" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+        </Association>
+        <Association Name="KidParent">
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Role="User1" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="SectionKid">
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SDCPervomayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="GymMembership" EntityType="Self.GymMembership" />
+          <EntitySet Name="Locker" EntityType="Self.Locker" />
+          <EntitySet Name="LockerRoom" EntityType="Self.LockerRoom" />
+          <EntitySet Name="PersonalTraining" EntityType="Self.PersonalTraining" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Section" EntityType="Self.Section" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="SectionDayOfWeek" EntityType="Self.SectionDayOfWeek" />
+          <AssociationSet Name="FK_SectionDayOfWeek_DayOfWeek" Association="Self.FK_SectionDayOfWeek_DayOfWeek">
+            <End Role="DayOfWeek" EntitySet="DayOfWeek" />
+            <End Role="SectionDayOfWeek" EntitySet="SectionDayOfWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LockerRoom_Gender" Association="Self.FK_LockerRoom_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="LockerRoom" EntitySet="LockerRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_GymMembership" Association="Self.FK_User_GymMembership">
+            <End Role="GymMembership" EntitySet="GymMembership" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locker_LockerRoom" Association="Self.FK_Locker_LockerRoom">
+            <End Role="LockerRoom" EntitySet="LockerRoom" />
+            <End Role="Locker" EntitySet="Locker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locker_User" Association="Self.FK_Locker_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Locker" EntitySet="Locker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalTraining_User" Association="Self.FK_PersonalTraining_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PersonalTraining" EntitySet="PersonalTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalTraining_User1" Association="Self.FK_PersonalTraining_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="PersonalTraining" EntitySet="PersonalTraining" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_User" Association="Self.FK_Section_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionDayOfWeek_Section" Association="Self.FK_SectionDayOfWeek_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="SectionDayOfWeek" EntitySet="SectionDayOfWeek" />
+          </AssociationSet>
+          <AssociationSet Name="GymMembershipServices" Association="Self.GymMembershipServices">
+            <End Role="GymMembership" EntitySet="GymMembership" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="KidParent" Association="Self.KidParent">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="SectionKid" Association="Self.SectionKid">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SDCPervomayModelContainer" CdmEntityContainer="SDCPervomayEntities">
+          <EntitySetMapping Name="DayOfWeek">
+            <EntityTypeMapping TypeName="SDCPervomayModel.DayOfWeek">
+              <MappingFragment StoreEntitySet="DayOfWeek">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="SDCPervomayModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymMembership">
+            <EntityTypeMapping TypeName="SDCPervomayModel.GymMembership">
+              <MappingFragment StoreEntitySet="GymMembership">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locker">
+            <EntityTypeMapping TypeName="SDCPervomayModel.Locker">
+              <MappingFragment StoreEntitySet="Locker">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LockerRoomId" ColumnName="LockerRoomId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LockerRoom">
+            <EntityTypeMapping TypeName="SDCPervomayModel.LockerRoom">
+              <MappingFragment StoreEntitySet="LockerRoom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalTraining">
+            <EntityTypeMapping TypeName="SDCPervomayModel.PersonalTraining">
+              <MappingFragment StoreEntitySet="PersonalTraining">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SDCPervomayModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Section">
+            <EntityTypeMapping TypeName="SDCPervomayModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="SDCPervomayModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SDCPervomayModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="GymMembershipId" ColumnName="GymMembershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SectionDayOfWeek">
+            <EntityTypeMapping TypeName="SDCPervomayModel.SectionDayOfWeek">
+              <MappingFragment StoreEntitySet="SectionDayOfWeek">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="DayOfWeekId" ColumnName="DayOfWeekId" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GymMembershipServices" TypeName="SDCPervomayModel.GymMembershipServices" StoreEntitySet="GymMembershipServices">
+            <EndProperty Name="GymMembership">
+              <ScalarProperty Name="Id" ColumnName="GymMembershipId" />
+            </EndProperty>
+            <EndProperty Name="Services">
+              <ScalarProperty Name="Id" ColumnName="ServicesId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="KidParent" TypeName="SDCPervomayModel.KidParent" StoreEntitySet="KidParent">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="IdKid" />
+            </EndProperty>
+            <EndProperty Name="User1">
+              <ScalarProperty Name="Id" ColumnName="IdParent" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SectionKid" TypeName="SDCPervomayModel.SectionKid" StoreEntitySet="SectionKid">
+            <EndProperty Name="Section">
+              <ScalarProperty Name="Id" ColumnName="SectionId" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="KidId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

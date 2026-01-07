@@ -64,11 +64,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\Pages\AuthorizationPage.xaml">
+    <Compile Include="AppData\SupportModels.cs" />
+    <Compile Include="View\Pages\ReceptionPages\SchedulePage.xaml.cs">
+      <DependentUpon>SchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\TechnicalSupportWindow.xaml.cs">
+      <DependentUpon>TechnicalSupportWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Pages\ReceptionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\ReceptionPage.xaml">
+    <Page Include="View\Pages\ReceptionPages\SchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\ContactsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,16 +144,23 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\AuthorizationPage.xaml.cs">
-      <DependentUpon>AuthorizationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\ReceptionPage.xaml.cs">
       <DependentUpon>ReceptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\AuthorizationWindow.xaml.cs">
+      <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\ContactsWindow.xaml.cs">
+      <DependentUpon>ContactsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Windows\TechnicalSupportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -196,6 +218,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Images\BoxingImg.png" />
     <Resource Include="Resources\Images\SDCPervomayLogo.png" />
   </ItemGroup>
   <ItemGroup>

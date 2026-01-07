@@ -1,0 +1,120 @@
+﻿<Window x:Class="SDCPervomay.View.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDCPervomay.View.Windows"
+        mc:Ignorable="d"
+        Title="СДЦ Первомайское" Width="400" Height="550"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5,0,15"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="0,5,0,15"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#F0F0F0" Padding="20,15">
+            <TextBlock Text="СДЦ Первомайское" 
+                       FontSize="24" 
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+        </Border>
+
+        <StackPanel Grid.Row="1" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300">
+
+            <TextBlock Text="Вход в систему"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,30"
+                       HorizontalAlignment="Left"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Введите логин" Foreground="#666666"/>
+            </StackPanel>
+
+            <TextBox Name="LoginTB" 
+                     Text="" 
+                     Height="40"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Введите пароль" Foreground="#666666"/>
+            </StackPanel>
+
+            <PasswordBox Name="PasswordPB" 
+                         Height="40"/>
+
+            <Button Name="LoginButton" 
+                    Content="Войти" 
+                    Height="40"
+                    Click="LoginButton_Click"/>
+
+            <Border Height="1" 
+                    Background="#E0E0E0" 
+                    Margin="0,30,0,20"/>
+
+            <StackPanel>
+                <TextBlock Text="Контакты" 
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,10"
+                           Foreground="#0078D4"
+                           MouseDown="TextBlock_MouseDown"
+                           Width="70"
+                           Cursor="Hand"
+                           HorizontalAlignment="Left"/>
+                <TextBlock Text="Тех. Поддержка" 
+                           FontWeight="SemiBold"
+                           Foreground="#0078D4"
+                           MouseDown="TextBlock_MouseDown_1"
+                           Cursor="Hand"
+                           Width="110"
+                           HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Row="2" 
+                Background="#F8F8F8" 
+                Height="40">
+            <TextBlock Text="© СДЦ Первомайское"
+                       Foreground="#666666"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

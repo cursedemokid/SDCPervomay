@@ -1,0 +1,67 @@
+﻿<Page x:Class="SDCPervomay.View.Pages.ReceptionPages.SchedulePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDCPervomay.View.Pages.ReceptionPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1280"
+      Title="SchedulePage">
+
+    <Grid Background="White" Margin="10">
+        <ListBox Name="ScheduleLB">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Width="1280"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid 
+                        Height="300" 
+                        Width="550" 
+                        Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding Image}"/>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                FontWeight="Bold"
+                                Text="{Binding Name}"
+                                HorizontalAlignment="Center"/>
+                            <TextBlock
+                                Grid.Row="2"
+                                FontWeight="Bold"
+                                Text="Время:"
+                                HorizontalAlignment="Left"/>
+                            <TextBlock
+                                Grid.Row="2"
+                                FontWeight="Bold"
+                                Text="{Binding Time}"
+                                HorizontalAlignment="Right"/>
+                            <TextBlock
+                                Grid.Row="4"
+                                FontWeight="Bold"
+                                Text="Тренер"
+                                HorizontalAlignment="Left"/>
+                            <TextBlock
+                                Grid.Row="4"
+                                FontWeight="Bold"
+                                Text="{Binding Coach}"
+                                HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

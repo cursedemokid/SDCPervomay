@@ -17,6 +17,5 @@ namespace SDCPervomay
     {
         public static SDCPervomayEntities context = new SDCPervomayEntities();
         public static User currentUser = new User();
-        public static Frame mainFrame = new Frame();
     }
 }

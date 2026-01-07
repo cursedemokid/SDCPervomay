@@ -1,4 +1,5 @@
 ﻿using SDCPervomay.View.Pages;
+using SDCPervomay.View.Pages.ReceptionPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,42 @@ namespace SDCPervomay
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            MainFrame.Navigate(new AuthorizationPage());
-            App.mainFrame = MainFrame;
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        //расписание
+        private void TextBlock_MouseDown_3(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new SchedulePage());
+        }
+
+        private void TextBlock_MouseDown_4(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_MouseDown_5(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBlock_MouseDown_6(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

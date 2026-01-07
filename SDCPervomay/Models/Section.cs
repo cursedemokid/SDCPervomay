@@ -18,7 +18,7 @@ namespace SDCPervomay.Models
         public Section()
         {
             this.SectionDayOfWeek = new HashSet<SectionDayOfWeek>();
-            this.User1 = new HashSet<User>();
+            this.SectionKid = new HashSet<SectionKid>();
         }
     
         public int Id { get; set; }
@@ -31,6 +31,6 @@ namespace SDCPervomay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SectionDayOfWeek> SectionDayOfWeek { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User1 { get; set; }
+        public virtual ICollection<SectionKid> SectionKid { get; set; }
     }
 }

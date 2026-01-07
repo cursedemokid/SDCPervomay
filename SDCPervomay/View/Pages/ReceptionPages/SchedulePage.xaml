@@ -5,14 +5,48 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SDCPervomay.View.Pages.ReceptionPages"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1280"
+      d:DesignHeight="1000" d:DesignWidth="1200"
       Title="SchedulePage">
 
     <Grid Background="White" Margin="10">
-        <ListBox Name="ScheduleLB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="Pn" Grid.Column="1" Text="Пн" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown" Cursor="Hand"/>
+            <TextBlock Name="Vt" Grid.Column="3" Text="Вт" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_1" Cursor="Hand"/>
+            <TextBlock Name="Sr" Grid.Column="5" Text="Ср" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_2" Cursor="Hand"/>
+            <TextBlock Name="Cht" Grid.Column="7" Text="Чт" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_3" Cursor="Hand"/>
+            <TextBlock Name="Pt" Grid.Column="9" Text="Пт" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_4" Cursor="Hand"/>
+            <TextBlock Name="Sb" Grid.Column="11" Text="Сб" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_5" Cursor="Hand"/>
+            <TextBlock Name="Vs" Grid.Column="13" Text="Вс" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" MouseDown="TextBlock_MouseDown_6" Cursor="Hand"/>
+        </Grid>
+        
+        <ListBox Name="ScheduleLB" Grid.Row="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Width="1280"/>
+                    <WrapPanel Width="1174"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>

@@ -17,13 +17,13 @@ namespace SDCPervomay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.KidParent = new HashSet<KidParent>();
+            this.KidParent1 = new HashSet<KidParent>();
             this.Locker = new HashSet<Locker>();
             this.PersonalTraining = new HashSet<PersonalTraining>();
             this.PersonalTraining1 = new HashSet<PersonalTraining>();
             this.Section = new HashSet<Section>();
-            this.User1 = new HashSet<User>();
-            this.User2 = new HashSet<User>();
-            this.Section1 = new HashSet<Section>();
+            this.SectionKid = new HashSet<SectionKid>();
         }
     
         public int Id { get; set; }
@@ -43,6 +43,10 @@ namespace SDCPervomay.Models
         public virtual Gender Gender { get; set; }
         public virtual GymMembership GymMembership { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KidParent> KidParent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KidParent> KidParent1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Locker> Locker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonalTraining> PersonalTraining { get; set; }
@@ -52,10 +56,6 @@ namespace SDCPervomay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Section> Section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Section> Section1 { get; set; }
+        public virtual ICollection<SectionKid> SectionKid { get; set; }
     }
 }

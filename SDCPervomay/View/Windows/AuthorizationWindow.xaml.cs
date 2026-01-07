@@ -45,7 +45,7 @@ namespace SDCPervomay.View.Windows
                                         && x.Password == PasswordPB.Password);
             if (user != null)
             {
-                if (user.RoleId == 5 || user.RoleId == 1)
+                if (user.RoleId == 5)
                 {
                     App.currentUser = user;
                     FeedbackService.Information($"Добро пожаловать {App.currentUser.FullName}");

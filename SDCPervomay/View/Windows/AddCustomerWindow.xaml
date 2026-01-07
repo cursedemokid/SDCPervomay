@@ -1,0 +1,53 @@
+﻿<Window x:Class="SDCPervomay.View.Windows.AddCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDCPervomay.View.Windows"
+        mc:Ignorable="d"
+        Title="AddCustomerWindow" SizeToContent="Height" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid Margin="40 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="ФИО" Grid.Row="1" BorderThickness="1" BorderBrush="Black">
+            <TextBox Name="FullnameTb" BorderBrush="White"/>
+        </GroupBox>
+        <GroupBox Header="ФИО родителя" Grid.Row="3" BorderThickness="1" BorderBrush="Black">
+            <TextBox Name="ParentNameTb" BorderBrush="White"/>
+        </GroupBox>
+        <GroupBox Header="Контактная информация родителя" Grid.Row="5" BorderThickness="1" BorderBrush="Black">
+            <TextBox Name="ParentContactTb" BorderBrush="White"/>
+        </GroupBox>
+        <GroupBox Header="Дата рождения" Grid.Row="7" BorderThickness="1" BorderBrush="Black">
+            <DatePicker Name="DateOfBirthDp" BorderBrush="White"/>
+        </GroupBox>
+        <GroupBox Header="Пол" Grid.Row="9" BorderThickness="1" BorderBrush="Black">
+            <ComboBox Name="GenderCmb" BorderBrush="White" DisplayMemberPath="{Binding Name}" SelectedValuePath="Id"/>
+        </GroupBox>
+
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Name="CancelBtn" Content="Закрыть" Click="CancelBtn_Click"/>
+            <Button Grid.Column="2" Name="AddBtn" Content="Добавить пользователя" Click="AddBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -12,14 +12,13 @@ namespace SDCPervomay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Locker
+    public partial class KidParent
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int LockerRoomId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int IdKid { get; set; }
+        public int IdParent { get; set; }
     
-        public virtual LockerRoom LockerRoom { get; set; }
         public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

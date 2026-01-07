@@ -1,0 +1,57 @@
+﻿<Page x:Class="SDCPervomay.View.Pages.ReceptionPages.KeysPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDCPervomay.View.Pages.ReceptionPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="558" d:DesignWidth="1280"
+      Title="KeysPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Name="FreeCmb">
+                <ComboBoxItem Name="FreeLockers" Content="Свободные"/>
+                <ComboBoxItem Name="OccupiedLockers" Content="Занятые"/>
+            </ComboBox>
+            <ComboBox Grid.Column="2" Name="LockerNameCmb" DisplayMemberPath="{Binding Name}" SelectedValuePath="Id"/>
+        </Grid>
+
+        <ListView Name="LockersLV" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Раздевалка" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Посетитель" DisplayMemberBinding="{Binding Customer}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Name="ReturnBtn" Content="Вернуть ключ от шкафчика" Click="ReturnBtn_Click"/>
+            <Button Grid.Column="2" Name="GiveBtn" Content="Выдать ключ от шкафчика" Click="GiveBtn_Click"/>
+        </Grid>
+    </Grid>
+</Page>

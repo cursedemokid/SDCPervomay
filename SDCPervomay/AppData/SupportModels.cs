@@ -15,5 +15,12 @@ namespace SDCPervomay.AppData
             public string Coach { get; set; }
             public string Image { get; set; }
         }
+
+        public class CustomerModel
+        {
+            public int Id { get; set; }
+            public string Fullname { get; set; }
+            public string Contact { get; set; }
+        }
     }
 }

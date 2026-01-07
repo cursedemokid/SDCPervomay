@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using static SDCPervomay.AppData.SupportModels;
 
 namespace SDCPervomay.View.Pages.ReceptionPages
@@ -14,6 +16,7 @@ namespace SDCPervomay.View.Pages.ReceptionPages
     {
         List<ScheduleModel> schedule = new List<ScheduleModel>();
         List<SectionDayOfWeek> sectionDayOfWeeks = App.context.SectionDayOfWeek.ToList();
+        TextBlock currentTbl = new TextBlock();
         public SchedulePage()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace SDCPervomay.View.Pages.ReceptionPages
 
         public void ScheduleOnToday(int dayOfWeek)
         {
+            schedule = new List<ScheduleModel>();
             foreach (var section in sectionDayOfWeeks.
                 Where(x => x.DayOfWeekId == dayOfWeek))
             {
@@ -63,6 +67,68 @@ namespace SDCPervomay.View.Pages.ReceptionPages
                     return 0;
 
             }
+
+        }
+
+        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Pn;
+            Pn.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(1);
+        }
+
+        private void TextBlock_MouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Vt;
+            Vt.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(2);
+
+        }
+
+        private void TextBlock_MouseDown_2(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Sr;
+            Sr.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(3);
+
+        }
+
+        private void TextBlock_MouseDown_3(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Cht;
+            Cht.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(4);
+
+        }
+
+        private void TextBlock_MouseDown_4(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Pt;
+            Pt.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(5);
+
+        }
+
+        private void TextBlock_MouseDown_5(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Sb;
+            Sb.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(6);
+
+        }
+
+        private void TextBlock_MouseDown_6(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            currentTbl.TextDecorations = null;
+            currentTbl = Vs;
+            Vs.TextDecorations = TextDecorations.Underline;
+            ScheduleOnToday(7);
 
         }
     }

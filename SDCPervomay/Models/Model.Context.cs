@@ -28,11 +28,14 @@ namespace SDCPervomay.Models
         public virtual DbSet<DayOfWeek> DayOfWeek { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<GymMembership> GymMembership { get; set; }
+        public virtual DbSet<GymMembershipServices> GymMembershipServices { get; set; }
+        public virtual DbSet<KidParent> KidParent { get; set; }
         public virtual DbSet<Locker> Locker { get; set; }
         public virtual DbSet<LockerRoom> LockerRoom { get; set; }
         public virtual DbSet<PersonalTraining> PersonalTraining { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Section> Section { get; set; }
+        public virtual DbSet<SectionKid> SectionKid { get; set; }
         public virtual DbSet<Services> Services { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<SectionDayOfWeek> SectionDayOfWeek { get; set; }

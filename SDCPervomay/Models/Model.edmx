@@ -29,17 +29,17 @@
         </EntityType>
         <EntityType Name="GymMembershipServices">
           <Key>
-            <PropertyRef Name="GymMembershipId" />
-            <PropertyRef Name="ServicesId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GymMembershipId" Type="int" Nullable="false" />
           <Property Name="ServicesId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KidParent">
           <Key>
-            <PropertyRef Name="IdKid" />
-            <PropertyRef Name="IdParent" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdKid" Type="int" Nullable="false" />
           <Property Name="IdParent" Type="int" Nullable="false" />
         </EntityType>
@@ -50,7 +50,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LockerRoomId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="LockerRoom">
           <Key>
@@ -101,9 +101,9 @@
         </EntityType>
         <EntityType Name="SectionKid">
           <Key>
-            <PropertyRef Name="SectionId" />
-            <PropertyRef Name="KidId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SectionId" Type="int" Nullable="false" />
           <Property Name="KidId" Type="int" Nullable="false" />
         </EntityType>
@@ -193,7 +193,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Locker_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -455,8 +455,28 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="GymMembershipServices" Relationship="Self.FK_GymMembershipServices_GymMembership" FromRole="GymMembership" ToRole="GymMembershipServices" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_GymMembership" FromRole="GymMembership" ToRole="User" />
-          <NavigationProperty Name="Services" Relationship="Self.GymMembershipServices" FromRole="GymMembership" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="GymMembershipServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GymMembershipId" Type="Int32" Nullable="false" />
+          <Property Name="ServicesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GymMembership" Relationship="Self.FK_GymMembershipServices_GymMembership" FromRole="GymMembershipServices" ToRole="GymMembership" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_GymMembershipServices_Services" FromRole="GymMembershipServices" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="KidParent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKid" Type="Int32" Nullable="false" />
+          <Property Name="IdParent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_KidParent_User" FromRole="KidParent" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_KidParent_User1" FromRole="KidParent" ToRole="User" />
         </EntityType>
         <EntityType Name="Locker">
           <Key>
@@ -465,7 +485,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LockerRoomId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="LockerRoom" Relationship="Self.FK_Locker_LockerRoom" FromRole="Locker" ToRole="LockerRoom" />
           <NavigationProperty Name="User" Relationship="Self.FK_Locker_User" FromRole="Locker" ToRole="User" />
         </EntityType>
@@ -510,7 +530,17 @@
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Section_User" FromRole="Section" ToRole="User" />
           <NavigationProperty Name="SectionDayOfWeek" Relationship="Self.FK_SectionDayOfWeek_Section" FromRole="Section" ToRole="SectionDayOfWeek" />
-          <NavigationProperty Name="User1" Relationship="Self.SectionKid" FromRole="Section" ToRole="User" />
+          <NavigationProperty Name="SectionKid" Relationship="Self.FK_SectionKid_Section" FromRole="Section" ToRole="SectionKid" />
+        </EntityType>
+        <EntityType Name="SectionKid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <Property Name="KidId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_SectionKid_Section" FromRole="SectionKid" ToRole="Section" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SectionKid_User" FromRole="SectionKid" ToRole="User" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -518,7 +548,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="GymMembership" Relationship="Self.GymMembershipServices" FromRole="Services" ToRole="GymMembership" />
+          <NavigationProperty Name="GymMembershipServices" Relationship="Self.FK_GymMembershipServices_Services" FromRole="Services" ToRole="GymMembershipServices" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -539,14 +569,14 @@
           <Property Name="GymMembershipId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="GymMembership" Relationship="Self.FK_User_GymMembership" FromRole="User" ToRole="GymMembership" />
+          <NavigationProperty Name="KidParent" Relationship="Self.FK_KidParent_User" FromRole="User" ToRole="KidParent" />
+          <NavigationProperty Name="KidParent1" Relationship="Self.FK_KidParent_User1" FromRole="User" ToRole="KidParent" />
           <NavigationProperty Name="Locker" Relationship="Self.FK_Locker_User" FromRole="User" ToRole="Locker" />
           <NavigationProperty Name="PersonalTraining" Relationship="Self.FK_PersonalTraining_User" FromRole="User" ToRole="PersonalTraining" />
           <NavigationProperty Name="PersonalTraining1" Relationship="Self.FK_PersonalTraining_User1" FromRole="User" ToRole="PersonalTraining" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Section" Relationship="Self.FK_Section_User" FromRole="User" ToRole="Section" />
-          <NavigationProperty Name="User1" Relationship="Self.KidParent" FromRole="User" ToRole="User1" />
-          <NavigationProperty Name="User2" Relationship="Self.KidParent" FromRole="User1" ToRole="User" />
-          <NavigationProperty Name="Section1" Relationship="Self.SectionKid" FromRole="User" ToRole="Section" />
+          <NavigationProperty Name="SectionKid" Relationship="Self.FK_SectionKid_User" FromRole="User" ToRole="SectionKid" />
         </EntityType>
         <EntityType Name="SectionDayOfWeek">
           <Key>
@@ -596,6 +626,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GymMembershipServices_GymMembership">
+          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="1" />
+          <End Role="GymMembershipServices" Type="Self.GymMembershipServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GymMembership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GymMembershipServices">
+              <PropertyRef Name="GymMembershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_GymMembership">
           <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -605,6 +647,42 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="GymMembershipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GymMembershipServices_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="GymMembershipServices" Type="Self.GymMembershipServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GymMembershipServices">
+              <PropertyRef Name="ServicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KidParent_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="KidParent" Type="Self.KidParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KidParent">
+              <PropertyRef Name="IdKid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KidParent_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="KidParent" Type="Self.KidParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KidParent">
+              <PropertyRef Name="IdParent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -621,7 +699,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Locker_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Locker" Type="Self.Locker" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -692,27 +770,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="GymMembershipServices">
-          <End Role="GymMembership" Type="Self.GymMembership" Multiplicity="*" />
-          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+        <Association Name="FK_SectionKid_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="1" />
+          <End Role="SectionKid" Type="Self.SectionKid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionKid">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="KidParent">
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <End Role="User1" Type="Self.User" Multiplicity="*" />
-        </Association>
-        <Association Name="SectionKid">
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_SectionKid_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="SectionKid" Type="Self.SectionKid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionKid">
+              <PropertyRef Name="KidId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SDCPervomayEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DayOfWeek" EntityType="Self.DayOfWeek" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="GymMembership" EntityType="Self.GymMembership" />
+          <EntitySet Name="GymMembershipServices" EntityType="Self.GymMembershipServices" />
+          <EntitySet Name="KidParent" EntityType="Self.KidParent" />
           <EntitySet Name="Locker" EntityType="Self.Locker" />
           <EntitySet Name="LockerRoom" EntityType="Self.LockerRoom" />
           <EntitySet Name="PersonalTraining" EntityType="Self.PersonalTraining" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Section" EntityType="Self.Section" />
+          <EntitySet Name="SectionKid" EntityType="Self.SectionKid" />
           <EntitySet Name="Services" EntityType="Self.Services" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="SectionDayOfWeek" EntityType="Self.SectionDayOfWeek" />
@@ -728,9 +821,25 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <AssociationSet Name="FK_GymMembershipServices_GymMembership" Association="Self.FK_GymMembershipServices_GymMembership">
+            <End Role="GymMembership" EntitySet="GymMembership" />
+            <End Role="GymMembershipServices" EntitySet="GymMembershipServices" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_GymMembership" Association="Self.FK_User_GymMembership">
             <End Role="GymMembership" EntitySet="GymMembership" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GymMembershipServices_Services" Association="Self.FK_GymMembershipServices_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="GymMembershipServices" EntitySet="GymMembershipServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KidParent_User" Association="Self.FK_KidParent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="KidParent" EntitySet="KidParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KidParent_User1" Association="Self.FK_KidParent_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="KidParent" EntitySet="KidParent" />
           </AssociationSet>
           <AssociationSet Name="FK_Locker_LockerRoom" Association="Self.FK_Locker_LockerRoom">
             <End Role="LockerRoom" EntitySet="LockerRoom" />
@@ -760,17 +869,13 @@
             <End Role="Section" EntitySet="Section" />
             <End Role="SectionDayOfWeek" EntitySet="SectionDayOfWeek" />
           </AssociationSet>
-          <AssociationSet Name="GymMembershipServices" Association="Self.GymMembershipServices">
-            <End Role="GymMembership" EntitySet="GymMembership" />
-            <End Role="Services" EntitySet="Services" />
-          </AssociationSet>
-          <AssociationSet Name="KidParent" Association="Self.KidParent">
-            <End Role="User" EntitySet="User" />
-            <End Role="User1" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="SectionKid" Association="Self.SectionKid">
+          <AssociationSet Name="FK_SectionKid_Section" Association="Self.FK_SectionKid_Section">
             <End Role="Section" EntitySet="Section" />
+            <End Role="SectionKid" EntitySet="SectionKid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionKid_User" Association="Self.FK_SectionKid_User">
             <End Role="User" EntitySet="User" />
+            <End Role="SectionKid" EntitySet="SectionKid" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -801,6 +906,24 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GymMembershipServices">
+            <EntityTypeMapping TypeName="SDCPervomayModel.GymMembershipServices">
+              <MappingFragment StoreEntitySet="GymMembershipServices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GymMembershipId" ColumnName="GymMembershipId" />
+                <ScalarProperty Name="ServicesId" ColumnName="ServicesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KidParent">
+            <EntityTypeMapping TypeName="SDCPervomayModel.KidParent">
+              <MappingFragment StoreEntitySet="KidParent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdKid" ColumnName="IdKid" />
+                <ScalarProperty Name="IdParent" ColumnName="IdParent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -853,6 +976,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SectionKid">
+            <EntityTypeMapping TypeName="SDCPervomayModel.SectionKid">
+              <MappingFragment StoreEntitySet="SectionKid">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="KidId" ColumnName="KidId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="SDCPervomayModel.Services">
               <MappingFragment StoreEntitySet="Services">
@@ -889,30 +1021,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="GymMembershipServices" TypeName="SDCPervomayModel.GymMembershipServices" StoreEntitySet="GymMembershipServices">
-            <EndProperty Name="GymMembership">
-              <ScalarProperty Name="Id" ColumnName="GymMembershipId" />
-            </EndProperty>
-            <EndProperty Name="Services">
-              <ScalarProperty Name="Id" ColumnName="ServicesId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="KidParent" TypeName="SDCPervomayModel.KidParent" StoreEntitySet="KidParent">
-            <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="IdKid" />
-            </EndProperty>
-            <EndProperty Name="User1">
-              <ScalarProperty Name="Id" ColumnName="IdParent" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SectionKid" TypeName="SDCPervomayModel.SectionKid" StoreEntitySet="SectionKid">
-            <EndProperty Name="Section">
-              <ScalarProperty Name="Id" ColumnName="SectionId" />
-            </EndProperty>
-            <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="KidId" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

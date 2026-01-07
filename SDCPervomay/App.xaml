@@ -44,6 +44,7 @@
             <Setter Property="Height" Value="50" />
             <Setter Property="Padding" Value="10 0" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="White" />
         </Style>
         <!--#endregion-->
         <!--#region ComboBox Style-->
@@ -52,6 +53,7 @@
             <Setter Property="FontFamily" Value="Tahoma" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Padding" Value="5 0" />
+            <Setter Property="Background" Value="White" />
         </Style>
         <!--#endregion-->
         <!--#region GroupBox Style-->

@@ -92,7 +92,7 @@
                 VerticalScrollBarVisibility="Auto" 
                 HorizontalScrollBarVisibility="Auto">
             <Frame Name="MainFrame"
-               />
+               NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
 
 

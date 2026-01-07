@@ -17,8 +17,8 @@ namespace SDCPervomay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GymMembership()
         {
+            this.GymMembershipServices = new HashSet<GymMembershipServices>();
             this.User = new HashSet<User>();
-            this.Services = new HashSet<Services>();
         }
     
         public int Id { get; set; }
@@ -26,8 +26,8 @@ namespace SDCPervomay.Models
         public decimal Cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<GymMembershipServices> GymMembershipServices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Services> Services { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

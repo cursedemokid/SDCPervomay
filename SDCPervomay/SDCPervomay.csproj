@@ -134,6 +134,9 @@
     <Compile Include="View\Windows\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\GiveKeyWindow.xaml.cs">
+      <DependentUpon>GiveKeyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\TechnicalSupportWindow.xaml.cs">
       <DependentUpon>TechnicalSupportWindow.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\ContactsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\GiveKeyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

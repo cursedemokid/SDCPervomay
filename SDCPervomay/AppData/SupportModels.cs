@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SDCPervomay.AppData
+﻿namespace SDCPervomay.AppData
 {
     internal class SupportModels
     {
@@ -21,6 +15,15 @@ namespace SDCPervomay.AppData
             public int Id { get; set; }
             public string Fullname { get; set; }
             public string Contact { get; set; }
+        }
+
+        public class LockersModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Status { get; set; }
+            public string Fullname { get; set; }
+            public int LockerRoomId { get; set; }
         }
     }
 }

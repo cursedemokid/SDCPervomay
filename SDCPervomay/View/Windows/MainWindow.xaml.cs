@@ -67,7 +67,10 @@ namespace SDCPervomay
 
         private void TextBlock_MouseDown_4(object sender, MouseButtonEventArgs e)
         {
-
+            currentTbl.TextDecorations = null;
+            currentTbl = KeysTbl;
+            KeysTbl.TextDecorations = TextDecorations.Underline;
+            MainFrame.Navigate(new KeysPage());
         }
 
         private void TextBlock_MouseDown_5(object sender, MouseButtonEventArgs e)

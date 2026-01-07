@@ -25,11 +25,11 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <ComboBox Name="FreeCmb">
+            <ComboBox Name="FreeCmb" SelectionChanged="FreeCmb_SelectionChanged">
                 <ComboBoxItem Name="FreeLockers" Content="Свободные"/>
                 <ComboBoxItem Name="OccupiedLockers" Content="Занятые"/>
             </ComboBox>
-            <ComboBox Grid.Column="2" Name="LockerNameCmb" DisplayMemberPath="{Binding Name}" SelectedValuePath="Id"/>
+            <ComboBox SelectionChanged="LockerNameCmb_SelectionChanged" Grid.Column="2" Name="LockerNameCmb" DisplayMemberPath="{Binding Name}" SelectedValuePath="Id"/>
         </Grid>
 
         <ListView Name="LockersLV" Grid.Row="2">
@@ -38,7 +38,7 @@
                     <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Раздевалка" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}"/>
-                    <GridViewColumn Header="Посетитель" DisplayMemberBinding="{Binding Customer}"/>
+                    <GridViewColumn Header="Посетитель" DisplayMemberBinding="{Binding Fullname}"/>
                 </GridView>
             </ListView.View>
         </ListView>

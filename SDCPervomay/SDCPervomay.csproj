@@ -254,6 +254,25 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Images\VolleyballImg.jpg" />
+    <Resource Include="Resources\Images\Yoga2Img.jpg" />
+    <Resource Include="Resources\Images\YogaHealthImg.jpg" />
+    <Resource Include="Resources\Images\PilatesImg.png" />
+    <Resource Include="Resources\Images\PowerImg.jpg" />
+    <Resource Include="Resources\Images\StretchingImg.jpg" />
+    <Resource Include="Resources\Images\SwimImg.png" />
+    <Resource Include="Resources\Images\SwimKidsImg.jpg" />
+    <Resource Include="Resources\Images\TennisImg.jpg" />
+    <Resource Include="Resources\Images\CardioImg.png" />
+    <Resource Include="Resources\Images\CrossfitImg.jpg" />
+    <Resource Include="Resources\Images\GymKidsImg.jpg" />
+    <Resource Include="Resources\Images\GymProfiImg.jpg" />
+    <Resource Include="Resources\Images\KidsFitnessImg.jpg" />
+    <Resource Include="Resources\Images\LatinoImg.jpg" />
+    <Resource Include="Resources\Images\ModernDanceImg.jpg" />
+    <Resource Include="Resources\Images\AerobicImg.jpg" />
+    <Resource Include="Resources\Images\BasketImg.jpg" />
+    <Resource Include="Resources\Images\BoxerTrainingImg.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\BoxingImg.png" />

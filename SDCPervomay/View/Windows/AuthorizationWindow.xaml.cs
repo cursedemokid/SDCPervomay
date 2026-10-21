@@ -1,4 +1,5 @@
-﻿using SDCPervomay.AppData;
+﻿using ProjectSecurity;
+using SDCPervomay.AppData;
 using SDCPervomay.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace SDCPervomay.View.Windows
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        List<User> users = App.context.User.ToList();
+
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -41,9 +42,8 @@ namespace SDCPervomay.View.Windows
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var user = users.FirstOrDefault(x => x.Login == LoginTB.Text 
-                                        && x.Password == PasswordPB.Password);
-            if (user != null)
+            var user = App.context.User.FirstOrDefault(x => x.Login == LoginTB.Text);
+            if (user != null && PasswordSecurity.Verify(PasswordPB.Password, user.Password))
             {
                 if (user.RoleId == 5)
                 {
